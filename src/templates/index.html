@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asistente Turístico</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <header class="hero">
+    <h1>Asistente <span>Turístico</span> Inteligente</h1>
+    <p>Clima, tipo de cambio(USD a MXN) e imagenes de lugar</p>
+
+    <form class="search-wrap" method="POST" action="/">
+      <input
+        type="text"
+        name="estados"
+        list="estados-mexico"
+        placeholder="Escribe o selecciona un estado..."
+        value="{{ ciudad_input }}"
+        required
+        autocomplete="off"
+      />
+      <datalist id="estados-mexico">
+        <option value="Aguascalientes">
+        <option value="Baja California">
+        <option value="Baja California Sur">
+        <option value="Campeche">
+        <option value="Chiapas">
+        <option value="Chihuahua">
+        <option value="Ciudad de México">
+        <option value="Coahuila">
+        <option value="Colima">
+        <option value="Durango">
+        <option value="Guanajuato">
+        <option value="Guerrero">
+        <option value="Hidalgo">
+        <option value="Jalisco">
+        <option value="Estado de México">
+        <option value="Michoacán">
+        <option value="Morelos">
+        <option value="Nayarit">
+        <option value="Nuevo León">
+        <option value="Oaxaca">
+        <option value="Puebla">
+        <option value="Querétaro">
+        <option value="Quintana Roo">
+        <option value="San Luis Potosí">
+        <option value="Sinaloa">
+        <option value="Sonora">
+        <option value="Tabasco">
+        <option value="Tamaulipas">
+        <option value="Tlaxcala">
+        <option value="Veracruz">
+        <option value="Yucatán">
+        <option value="Zacatecas">
+      </datalist>
+      <button type="submit">🔍 Explorar</button>
+    </form>
+  </header>
+
+  <!-- ── Contenido principal ───────────────────────────────────── -->
+  <main class="main">
+
+    {% if resultado %}
+
+      <!-- Badge ciudad -->
+      <div class="ciudad-badge">
+        📍 {{ resultado.clima.ciudad }}, {{ resultado.clima.pais }}
+      </div>
+
+      <!-- Errores parciales -->
+      {% for servicio, msg in resultado.errores.items() %}
+        <div class="error-banner">⚠️ <strong>{{ servicio | capitalize }}:</strong> {{ msg }}</div>
+      {% endfor %}
+
+      <!-- Grid de tarjetas informativas -->
+      <div class="grid">
+
+        <!-- Clima -->
+        {% if not resultado.clima.error %}
+        <div class="card card-clima">
+          <div class="card-accent"></div>
+          <div class="card-label">🌤 Clima actual</div>
+          <div class="clima-temp">{{ resultado.clima.temperatura }}<sup>°C</sup></div>
+          <div class="clima-desc">{{ resultado.clima.descripcion }}</div>
+          <div class="clima-meta">
+            <span>💧 {{ resultado.clima.humedad }}% humedad</span>
+            <span>🌡 Sensación {{ resultado.clima.sensacion }}°C</span>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Finanzas -->
+        {% if not resultado.finanzas.error %}
+        <div class="card card-finanzas">
+          <div class="card-accent"></div>
+          <div class="card-label">💰 Tipo de cambio</div>
+          <div class="finanzas-valor">{{ resultado.finanzas.compra }}</div>
+          <div class="finanzas-sub">MXN por 1 {{ resultado.finanzas.nombre }} ({{ resultado.finanzas.moneda }})</div>
+        </div>
+        {% endif %}
+
+      </div>
+
+      <!-- Galería de imágenes -->
+      {% if resultado.imagenes %}
+      <h2 class="galeria-titulo">📸 Imágenes de {{ resultado.clima.ciudad }}</h2>
+      <div class="galeria-grid">
+        {% for foto in resultado.imagenes %}
+        <div class="galeria-item">
+          <img src="{{ foto.url_regular }}" alt="{{ foto.descripcion }}" loading="lazy"/>
+          <div class="galeria-overlay">
+            <a href="{{ foto.autor.perfil }}" target="_blank" rel="noopener">
+              📷 {{ foto.autor.nombre }}
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    {% else %}
+
+      <!-- Estado vacío -->
+      <div class="empty-state">
+        <span class="icon">🗺️</span>
+        <h2>¿A dónde quieres ir?</h2>
+        <p>Ingresa una ciudad y te damos todo lo que necesitas para tu visita.</p>
+      </div>
+
+    {% endif %}
+
+  </main>
+
+</body>
+</html>

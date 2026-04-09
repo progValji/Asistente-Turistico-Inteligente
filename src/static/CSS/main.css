@@ -1,0 +1,355 @@
+    /* ── Variables ─────────────────────────────────────────────── */
+    :root {
+      --sol:     #F4A400;
+      --cielo:   #1A6EBF;
+      --tierra:  #C0392B;
+      --selva:   #27AE60;
+      --arena:   #FEF9EE;
+      --noche:   #0D1B2A;
+      --card-bg: #ffffff;
+      --radius:  18px;
+      --shadow:  0 8px 32px rgba(13,27,42,.12);
+    }
+
+    /* ── Reset & Base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--arena);
+      color: var(--noche);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero / Header ─────────────────────────────────────────── */
+    .hero {
+      background: var(--noche);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(26,110,191,.45) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(244,164,0,.30) 0%, transparent 55%);
+      padding: 3.5rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "✈";
+      position: absolute;
+      font-size: 18rem;
+      opacity: .04;
+      top: -3rem;
+      right: -2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+
+    .hero h1 span { color: var(--sol); }
+
+    .hero p {
+      color: rgba(255,255,255,.65);
+      margin-top: .75rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── Buscador ──────────────────────────────────────────────── */
+    .search-wrap {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap input {
+      padding: .85rem 1.4rem;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      width: min(100%, 340px);
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      outline: 2px solid rgba(255,255,255,.2);
+      transition: outline .2s, background .2s;
+    }
+
+    .search-wrap input::placeholder { color: rgba(255,255,255,.5); }
+
+    .search-wrap input:focus {
+      outline-color: var(--sol);
+      background: rgba(255,255,255,.18);
+    }
+
+    .search-wrap button {
+      padding: .85rem 1.8rem;
+      border-radius: 50px;
+      border: none;
+      background: var(--sol);
+      color: var(--noche);
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .search-wrap button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244,164,0,.4);
+    }
+
+    /* ── Contenedor principal ──────────────────────────────────── */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── Badge de ciudad ───────────────────────────────────────── */
+    .ciudad-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--cielo);
+      color: #fff;
+      padding: .5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Grid de tarjetas ──────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Tarjeta base ──────────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp .5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(2) { animation-delay: .1s; }
+    .card:nth-child(3) { animation-delay: .2s; }
+
+    .card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .card-label {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      opacity: .55;
+      margin-bottom: .6rem;
+    }
+
+    /* ── Tarjeta Clima ─────────────────────────────────────────── */
+    .card-clima .card-accent { background: linear-gradient(90deg, var(--cielo), #5DADE2); }
+
+    .clima-temp {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--cielo);
+    }
+
+    .clima-temp sup { font-size: 1.8rem; vertical-align: super; }
+
+    .clima-desc {
+      font-size: 1.05rem;
+      text-transform: capitalize;
+      margin: .4rem 0 1rem;
+      color: #555;
+    }
+
+    .clima-meta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .clima-meta span {
+      font-size: .88rem;
+      background: #EBF5FB;
+      color: var(--cielo);
+      padding: .3rem .75rem;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    /* ── Tarjeta Finanzas ──────────────────────────────────────── */
+    .card-finanzas .card-accent { background: linear-gradient(90deg, var(--selva), #82E0AA); }
+
+    .finanzas-valor {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--selva);
+      line-height: 1;
+    }
+
+    .finanzas-sub {
+      font-size: .9rem;
+      color: #777;
+      margin-top: .4rem;
+    }
+
+    /* ── Tarjeta IA ────────────────────────────────────────────── */
+    .card-ia {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--noche) 0%, #1a2e45 100%);
+      color: #fff;
+      animation-delay: .3s;
+    }
+
+    .card-ia .card-label { color: rgba(255,255,255,.5); }
+
+    .ia-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(244,164,0,.15);
+      border: 1px solid rgba(244,164,0,.3);
+      color: var(--sol);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .ia-texto {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.88);
+    }
+
+    /* ── Galería ───────────────────────────────────────────────── */
+    .galeria-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .galeria-item {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+      aspect-ratio: 16/10;
+      animation: fadeUp .5s ease both;
+    }
+
+    .galeria-item:nth-child(2) { animation-delay: .08s; }
+    .galeria-item:nth-child(3) { animation-delay: .16s; }
+    .galeria-item:nth-child(4) { animation-delay: .24s; }
+    .galeria-item:nth-child(5) { animation-delay: .32s; }
+    .galeria-item:nth-child(6) { animation-delay: .40s; }
+
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .galeria-item:hover img { transform: scale(1.06); }
+
+    .galeria-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,.75) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: .8rem;
+    }
+
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+
+    .galeria-overlay a {
+      color: #fff;
+      font-size: .78rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── Error banner ──────────────────────────────────────────── */
+    .error-banner {
+      background: #FDF2F2;
+      border-left: 4px solid var(--tierra);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: .9rem;
+      color: var(--tierra);
+    }
+
+    /* ── Estado vacío ──────────────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+
+    .empty-state .icon {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .empty-state h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: .5rem;
+    }
+
+    .empty-state p { color: #888; }
