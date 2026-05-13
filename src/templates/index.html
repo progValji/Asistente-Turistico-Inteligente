@@ -6,6 +6,11 @@
   <title>Asistente Turístico</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .sugerencias-lista{
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,49 +20,18 @@
     <p>Clima, tipo de cambio(USD a MXN) e imagenes de lugar</p>
 
     <form class="search-wrap" method="POST" action="/">
-      <input
-        type="text"
-        name="estados"
-        list="estados-mexico"
-        placeholder="Escribe o selecciona un estado..."
-        value="{{ ciudad_input }}"
-        required
-        autocomplete="off"
-      />
-      <datalist id="estados-mexico">
-        <option value="Aguascalientes">
-        <option value="Baja California">
-        <option value="Baja California Sur">
-        <option value="Campeche">
-        <option value="Chiapas">
-        <option value="Chihuahua">
-        <option value="Ciudad de México">
-        <option value="Coahuila">
-        <option value="Colima">
-        <option value="Durango">
-        <option value="Guanajuato">
-        <option value="Guerrero">
-        <option value="Hidalgo">
-        <option value="Jalisco">
-        <option value="Estado de México">
-        <option value="Michoacán">
-        <option value="Morelos">
-        <option value="Nayarit">
-        <option value="Nuevo León">
-        <option value="Oaxaca">
-        <option value="Puebla">
-        <option value="Querétaro">
-        <option value="Quintana Roo">
-        <option value="San Luis Potosí">
-        <option value="Sinaloa">
-        <option value="Sonora">
-        <option value="Tabasco">
-        <option value="Tamaulipas">
-        <option value="Tlaxcala">
-        <option value="Veracruz">
-        <option value="Yucatán">
-        <option value="Zacatecas">
-      </datalist>
+      <div class="autocomplete-wrapper">
+        <input
+          type="text"
+          id="ciudad-input"
+          name="estados"
+          placeholder="Escribe una ciudad o estado..."
+          value="{{ ciudad_input }}"
+          required
+          autocomplete="off"
+        />
+        <ul id="sugerencias" class="sugerencias-lista"></ul>
+      </div>
       <button type="submit">🔍 Explorar</button>
     </form>
   </header>
@@ -136,5 +110,45 @@
 
   </main>
 
+
+<script>
+  const input = document.getElementById("ciudad-input");
+  const lista = document.getElementById("sugerencias");
+  let debounceTimer;
+
+  input.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    const query = input.value.trim();
+
+    if (query.length < 2) {
+      lista.innerHTML = "";
+      return;
+    }
+
+    // Espera 500ms después de que el usuario deje de escribir
+    debounceTimer = setTimeout(async () => {
+      const res = await fetch(`/buscar-ciudades?q=${encodeURIComponent(query)}`);
+      const ciudades = await res.json();
+
+      lista.innerHTML = "";
+      ciudades.forEach(ciudad => {
+        const li = document.createElement("li");
+        li.textContent = ciudad.display;        // "Orizaba, Veracruz"
+        li.addEventListener("click", () => {
+          input.value = ciudad.nombre;          // manda solo "Orizaba" a OpenWeatherMap
+          lista.innerHTML = "";
+        });
+        lista.appendChild(li);
+      });
+    }, 500);
+  });
+
+  // Cierra sugerencias si el usuario hace click afuera
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".autocomplete-wrapper")) {
+      lista.innerHTML = "";
+    }
+  });
+</script>
 </body>
 </html>
