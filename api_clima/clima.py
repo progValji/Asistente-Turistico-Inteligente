@@ -7,20 +7,22 @@ load_dotenv()
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-def get_current_weather(city: str, units: str = "metric", lang: str = "es") -> dict | None:
+def get_current_weather(lat: float, lon: float, units: str = "metric", lang: str = "es") -> dict | None:
     """
-    Obtiene el clima actual para una ciudad usando OpenWeatherMap API.
-    
+    Obtiene el clima actual usando coordenadas geográficas.
+
     Args:
-        city: Nombre de la ciudad (ej: "Cordoba,MX")
+        lat: Latitud de la ciudad
+        lon: Longitud de la ciudad
         units: 'metric', 'imperial' o 'standard'
         lang: Código de idioma (ej: 'es', 'en')
-    
+
     Returns:
         dict con los datos del clima o None si hay error
     """
     params = {
-        "q": city,
+        "lat": lat,       # ✅ coordenadas en lugar de "q"
+        "lon": lon,
         "appid": API_KEY,
         "units": units,
         "lang": lang
@@ -29,12 +31,11 @@ def get_current_weather(city: str, units: str = "metric", lang: str = "es") -> d
         response = requests.get(BASE_URL, params=params, timeout=10)
         response.raise_for_status()
         data = response.json()
-        
-        # Verificar errores de la API
+
         if data.get("cod") != 200:
             print(f"❌ Error: {data.get('message', 'Error desconocido')}")
             return None
-            
+
         return data
     except requests.exceptions.Timeout:
         return {"error": "⏰ La solicitud ha excedido el tiempo de espera"}
@@ -58,6 +59,5 @@ def get_weather_description(data : dict) -> dict:
     }
 
 if __name__ == "__main__":
-    ciudad = "Cordoba,MX"# Valor por defecto
-    resultado = get_current_weather(ciudad)
+    resultado = get_current_weather( 19.0717, -97.0461) #cordenadas de coscomatepec
     print(resultado)

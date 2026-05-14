@@ -24,7 +24,7 @@
         <input
           type="text"
           id="ciudad-input"
-          name="estados"
+          name="ciudad"
           placeholder="Escribe una ciudad o estado..."
           value="{{ ciudad_input }}"
           required
@@ -32,6 +32,11 @@
         />
         <ul id="sugerencias" class="sugerencias-lista"></ul>
       </div>
+
+      <!-- Campos ocultos para las coordenadas -->
+      <input type="hidden" id="ciudad-lat" name="lat" value="{{ lat }}">
+      <input type="hidden" id="ciudad-lon" name="lon" value="{{ lon }}">
+
       <button type="submit">🔍 Explorar</button>
     </form>
   </header>
@@ -117,6 +122,9 @@
   let debounceTimer;
 
   input.addEventListener("input", () => {
+    document.getElementById("ciudad-lat").value = "";
+    document.getElementById("ciudad-lon").value = "";
+
     clearTimeout(debounceTimer);
     const query = input.value.trim();
 
@@ -135,7 +143,9 @@
         const li = document.createElement("li");
         li.textContent = ciudad.display;        // "Orizaba, Veracruz"
         li.addEventListener("click", () => {
-          input.value = ciudad.nombre;          // manda solo "Orizaba" a OpenWeatherMap
+          input.value = ciudad.nombre;
+          document.getElementById("ciudad-lat").value = ciudad.lat;  // ✅
+          document.getElementById("ciudad-lon").value = ciudad.lon;  // ✅
           lista.innerHTML = "";
         });
         lista.appendChild(li);
@@ -147,6 +157,17 @@
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".autocomplete-wrapper")) {
       lista.innerHTML = "";
+    }
+  });
+
+  document.querySelector(".search-wrap").addEventListener("submit", (e) => {
+    const lat = document.getElementById("ciudad-lat").value;
+    const lon = document.getElementById("ciudad-lon").value;
+
+    if (!lat || !lon) {
+      e.preventDefault(); // cancela el envío
+      alert("Por favor selecciona una ciudad de la lista de sugerencias.");
+      input.focus();
     }
   });
 </script>

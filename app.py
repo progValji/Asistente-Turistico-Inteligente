@@ -13,14 +13,22 @@ RAPID_KEY = os.getenv("RAPIDAPI_KEY")
 @app.route("/", methods=["GET", "POST"])
 def index():
     resultado = None
+    error = None
     ciudad_input = ""
 
     if request.method == "POST":
-        ciudad_input = request.form.get("estados", "").strip()
+        ciudad_input = request.form.get("ciudad", "").strip()
+        lat = request.form.get("lat")
+        lon = request.form.get("lon")
+        try:
+            lat = float(lat)
+            lon = float(lon)
+        except(ValueError):
+            error = "Selecciona una ciudad de la lista de sugerencias."
         if ciudad_input:
-            resultado = obtener_info_turistica(ciudad_input)
+            resultado = obtener_info_turistica(ciudad_input, lat, lon)
 
-    return render_template("index.html", resultado=resultado, ciudad_input=ciudad_input)
+    return render_template("index.html", resultado=resultado, ciudad_input=ciudad_input, error=error)
 
 @app.route("/buscar-ciudades")
 def buscar_ciudades():
@@ -48,8 +56,9 @@ def buscar_ciudades():
         ciudades = [
             {
                 "nombre": city["city"],
-                "estado": city["regionCode"],  # ej: "VER", "JAL"
-                "display": f"{city['city']}, {city['region']}"  # ej: "Orizaba, Veracruz"
+                "display": f"{city['city']}, {city['region']}",
+                "lat": city["latitude"],
+                "lon": city["longitude"],
             }
             for city in data.get("data", [])
         ]
