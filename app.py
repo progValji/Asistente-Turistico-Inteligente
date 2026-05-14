@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, flash
 from integrador.integrador import obtener_info_turistica
 import requests
 from dotenv import load_dotenv
 import os
 
 app = Flask(__name__, template_folder="src/templates", static_folder="src/static")
+app.secret_key = os.getenv("SECRET_KEY")
 
 load_dotenv()
 
@@ -24,9 +25,15 @@ def index():
             lat = float(lat)
             lon = float(lon)
         except(ValueError):
-            error = "Selecciona una ciudad de la lista de sugerencias."
-        if ciudad_input:
-            resultado = obtener_info_turistica(ciudad_input, lat, lon)
+           flash("Por favor selecciona una ciudad válida de la lista.", "error")
+        resultado = obtener_info_turistica(ciudad_input, lat, lon)
+
+        if not resultado["exito"]:
+            for servicio, msg in resultado["errores"].items():
+                flash(f"Error en {servicio}: {msg}", "error")
+
+        if resultado["exito"]:
+            flash(f"Información cargada correctamente para {ciudad_input}.", "success")
 
     return render_template("index.html", resultado=resultado, ciudad_input=ciudad_input, error=error)
 
