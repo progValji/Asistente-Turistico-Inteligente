@@ -5,49 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explora México</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+  </style>
 </head>
 <body>
   <header class="header">
-    <h2 class="header__subtitle">🌎 Tu compañero de viaje</h2>
-    <h1 class="header__title">Explora México</h1>
-    <p class="header__paragraph">Clima, tipo de cambio y fotos al instante</p>
+    <section class="container header__container">
+      <p class="header__subtitle">🌎 Tu compañero de viaje</p>
+      <h1 class="header__title">Explora México</h1>
+      <p class="header__paragraph">Clima, tipo de cambio y fotos al instante</p>
+  
+      <section class="header__search">
+        <form class="search__form" method="POST" action="/">
 
-    <section class="header__search">
-      <form class="search__form" method="POST" action="/">
-        <div class="search__autocomplete">
-          <div class="search__input-wrapper">
-            <span class="search__input-icon">📍</span>
-            <input
-              type="text"
-              id="ciudad-input"
-              name="ciudad"
-              class="search__input"
-              placeholder="Escribe un estado o ciudad de México..."
-              value="{{ ciudad_input }}"
-              required
-              autocomplete="off"
-            />
+          <div class="search__autocomplete">
+            <div class="search__input-wrapper">
+              <span class="search__input-icon">
+                  <img src="{{ url_for('static', filename='img/map.svg') }}" alt="Map">
+              </span>
+              <input
+                type="text"
+                id="ciudad-input"
+                name="ciudad"
+                class="search__input"
+                placeholder="Escribe un estado o ciudad de México..."
+                value="{{ ciudad_input }}"
+                required
+                autocomplete="off"
+              />
+              <button type="submit" class="search__button">
+                <img src="{{ url_for('static', filename='img/lup.svg') }}" alt="Lupa">
+              </button>
+            </div>
+            <ul id="sugerencias" class="search__suggestions"></ul>
           </div>
-          <ul id="sugerencias" class="search__suggestions"></ul>
+  
+          <input type="hidden" id="ciudad-lat" name="lat" value="{{ lat }}">
+          <input type="hidden" id="ciudad-lon" name="lon" value="{{ lon }}">
+
+        </form>
+  
+        <div class="search__quick-picks">
+          <button class="search__quick-pick" data-valor="Cancún">Cancún</button>
+          <button class="search__quick-pick" data-valor="Ciudad de México">Ciudad de México</button>
+          <button class="search__quick-pick" data-valor="Oaxaca">Oaxaca</button>
+          <button class="search__quick-pick" data-valor="Guadalajara">Guadalajara</button>
+          <button class="search__quick-pick" data-valor="Monterrey">Monterrey</button>
+          <button class="search__quick-pick" data-valor="Los Cabos">Los Cabos</button>
+          <button class="search__quick-pick" data-valor="Mérida">Mérida</button>
+          <button class="search__quick-pick" data-valor="Veracruz">Veracruz</button>
         </div>
-
-        <input type="hidden" id="ciudad-lat" name="lat" value="{{ lat }}">
-        <input type="hidden" id="ciudad-lon" name="lon" value="{{ lon }}">
-
-        <button type="submit" class="search__button">🔍 Buscar</button>
-      </form>
-
-      <div class="search__quick-picks">
-        <button class="search__quick-pick" data-valor="Cancún">Cancún</button>
-        <button class="search__quick-pick" data-valor="Ciudad de México">Ciudad de México</button>
-        <button class="search__quick-pick" data-valor="Oaxaca">Oaxaca</button>
-        <button class="search__quick-pick" data-valor="Guadalajara">Guadalajara</button>
-        <button class="search__quick-pick" data-valor="Monterrey">Monterrey</button>
-        <button class="search__quick-pick" data-valor="Los Cabos">Los Cabos</button>
-        <button class="search__quick-pick" data-valor="Mérida">Mérida</button>
-        <button class="search__quick-pick" data-valor="Veracruz">Veracruz</button>
-      </div>
+      </section>
     </section>
   </header>
 
