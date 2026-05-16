@@ -88,10 +88,13 @@ button{
 body{
   font-family: "Roboto Condensed", sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header{
   position: relative;
+  min-height: 500px;
 
   background:
     linear-gradient(
@@ -197,4 +200,38 @@ body{
     background-color: var(--color-primary-light);
     color: var(--color-primary);
   }
+}
+/*   Main    */
+
+.main{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-state{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.empty-state__icon{
+  font-size: 4rem;
+}
+
+.empty-state__title{
+  color: var(--color-primary);
+}
+
+/*    Footer    */
+.footer{
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid var(--color-text-medium);
+}
+
+.footer__paragraph{
+  font-size: 1.2rem;
 }
