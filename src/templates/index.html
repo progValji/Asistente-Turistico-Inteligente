@@ -38,7 +38,8 @@
                 <img src="{{ url_for('static', filename='img/lup.svg') }}" alt="Lupa">
               </button>
             </div>
-            <ul id="sugerencias" class="search__suggestions"></ul>
+            <ul id="sugerencias" class="search__suggestions">
+            </ul>
           </div>
   
           <input type="hidden" id="ciudad-lat" name="lat" value="{{ lat }}">
@@ -153,7 +154,9 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__paragraph">&copy; 2026. Explora México y sus alrededores</p>
+    <div class="container">
+      <p class="footer__paragraph">&copy; 2026. Explora México y sus alrededores</p>
+    </div>
   </footer>
 
   <script src="{{ url_for('static', filename='JS/app.js') }}"></script>

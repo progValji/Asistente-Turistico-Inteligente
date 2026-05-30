@@ -133,6 +133,8 @@ body{
 
 .header__subtitle{color: var(--color-primary); font-weight: bold; font-size: 1.2rem;}
 
+.search__autocomplete{position: relative;}
+
 .search__input-wrapper{
   display: flex;
   gap: .5rem;
@@ -148,7 +150,58 @@ body{
 }
 
 .search__suggestions{
-  display: none;
+  border-radius: .9rem;
+  color: var(--color-text-light);
+  padding: 1rem .8rem;
+  list-style: none;
+  background-color: var(--color-text-dark);
+  position: absolute;
+  top: calc(100% + .3rem);
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: .3rem;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: transform .3s, opacity .3s;
+}
+
+.search__suggestions--visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.search-suggetions__element {
+  padding: .7rem 0;
+  position: relative;
+  padding-left: 2rem;
+  cursor: pointer;
+  transition: background-color .3s;
+  &:hover{
+    background-color: var(--color-text-medium);
+  }
+}
+
+.search-suggetions__element::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+
+    background-image: url("/static/img/city.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .search__input{
@@ -219,10 +272,20 @@ body{
 
 .empty-state__icon{
   font-size: 4rem;
+  animation: moveY 1s infinite alternate;
 }
 
 .empty-state__title{
   color: var(--color-primary);
+}
+
+@keyframes moveY {
+  from{
+    transform: translateY(0%);
+  }
+  to{
+    transform: translateY(-10px);
+  }
 }
 
 /*    Footer    */

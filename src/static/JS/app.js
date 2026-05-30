@@ -22,26 +22,30 @@
       lista.innerHTML = "";
       ciudades.forEach(ciudad => {
         const li = document.createElement("li");
+        li.classList.add('search-suggetions__element')
         li.textContent = ciudad.display;        // "Orizaba, Veracruz"
         li.addEventListener("click", () => {
           input.value = ciudad.nombre;
-          document.getElementById("ciudad-lat").value = ciudad.lat;  // ✅
-          document.getElementById("ciudad-lon").value = ciudad.lon;  // ✅
+          document.getElementById("ciudad-lat").value = ciudad.lat;
+          document.getElementById("ciudad-lon").value = ciudad.lon;
           lista.innerHTML = "";
         });
         lista.appendChild(li);
       });
+      document.querySelector('.search__suggestions').classList.add('search__suggestions--visible')
     }, 500);
+
   });
 
   // Cierra sugerencias si el usuario hace click afuera
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".autocomplete-wrapper")) {
+      document.querySelector('.search__suggestions').classList.remove('search__suggestions--visible')
       lista.innerHTML = "";
     }
   });
 
-  document.querySelector(".search-wrap").addEventListener("submit", (e) => {
+  document.querySelector(".search__form").addEventListener("submit", (e) => {
     const lat = document.getElementById("ciudad-lat").value;
     const lon = document.getElementById("ciudad-lon").value;
 
