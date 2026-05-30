@@ -1,5 +1,7 @@
   const input = document.getElementById("ciudad-input");
   const lista = document.getElementById("sugerencias");
+  const listaSugerancia = document.querySelector('.search__quick-picks')
+
   let debounceTimer;
 
   input.addEventListener("input", () => {
@@ -44,6 +46,16 @@
       lista.innerHTML = "";
     }
   });
+
+  listaSugerancia.addEventListener('click', function(e){
+  const boton = e.target.closest('.search__quick-pick');
+
+  if (!boton) return;
+
+  input.value = boton.textContent.trim()
+  document.getElementById("ciudad-lat").value = boton.dataset.lat
+  document.getElementById("ciudad-lon").value = boton.dataset.lon
+  })
 
   document.querySelector(".search__form").addEventListener("submit", (e) => {
     const lat = document.getElementById("ciudad-lat").value;
