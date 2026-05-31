@@ -92,7 +92,7 @@
     </section>
   </header>
 
-  <main class="{% if resultado %}main-result{% else %}main-empty{% endif %} container">
+  <main class="{% if resultado %}main-result{% else %}main-empty{% endif %}">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         <div class="flash-container">
@@ -104,13 +104,13 @@
     {% endwith %}
 
     {% if resultado %}
-      <h1 class="main__title">Resultados para <span class="main__title-highlight">{{ resultado.clima.ciudad }}</span></h1>
-
-      <section class="main__results">
+    
+    <section class="main__results container">
+        <h1 class="main__title">Resultados para <span class="main__title-highlight">{{ resultado.clima.ciudad }}</span></h1>
         <div class="main-set">
           {% if not resultado.clima.error %}
           <article class="weather-card">
-            <h3 class="weather-card__title">🌤️ Clima en {{ resultado.clima.ciudad }}</h3>
+            <h3 class="weather-card__title">🌤️ Clima</h3>
   
             <div class="weather-card__primary">
               <div class="weather-card__icon">🌤</div>
