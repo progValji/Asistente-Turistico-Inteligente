@@ -13,10 +13,11 @@
     "errores": {},
     "exito": true,
     "finanzas": {
-        "compra": 17.3435,
+        "compra": 17.34,
         "error": null,
         "moneda": "USD",
-        "nombre": "Dólar"
+        "nombre": "Dólar",
+        "fecha": "31/5/2026, 12:05:52 p.m"
     },
     "imagenes": [
         {

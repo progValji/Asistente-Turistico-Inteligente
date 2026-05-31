@@ -20,42 +20,6 @@
   --color-bg-soft: #F4F8FB;
   --color-bg-glass: rgba(255,255,255,0.18);
 
-  /* =========
-     BOTONES / CHIPS
-  ========= */
-
-  --color-chip-bg: rgba(30,111,168,0.12);
-  --color-chip-border: rgba(30,111,168,0.25);
-
-  /* =========
-     OVERLAYS
-  ========= */
-
-  --color-overlay-dark: rgba(0,0,0,0.45);
-  --color-overlay-medium: rgba(0,0,0,0.18);
-
-  /* =========
-     SOMBRAS
-  ========= */
-
-  --shadow-soft:
-    0 4px 20px rgba(0,0,0,0.08);
-
-  --shadow-medium:
-    0 8px 30px rgba(0,0,0,0.12);
-
-  --shadow-strong:
-    0 15px 40px rgba(0,0,0,0.18);
-
-  /* =========
-     BORDES
-  ========= */
-
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
-  --radius-xl: 40px;
-
 }
 
 .flash--success {
@@ -350,15 +314,11 @@ main{
 .main__results, .main-set{
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .main-result{
   padding: 3rem 0;
-}
-
-.main-set{
-
 }
 
 .main__title{
@@ -368,7 +328,7 @@ main{
 }
 
 /*  Weather */
-.weather-card{
+.weather-card, .exchange-card{
   background-color: white;
   padding: 2rem 1rem;
   box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -382,11 +342,13 @@ main{
 }
 .weather-card__primary{
   display: flex;
+  justify-content: center;
+  gap: .8rem;
 }
-.weather-card__icon, .weather-card__temperature{
+.weather-card__icon, .weather-card__temperature, .exchange-card__icon, .exchange-card__rate{
   font-size: 3.5rem;
 }
-.weather-card__description{font-size: 1.5rem; text-transform: capitalize;}
+.weather-card__description, .exchange-card__label{font-size: 1.5rem; text-transform: capitalize;}
 .weather-card__stats{
   display: flex;
   gap: 1rem;
@@ -401,6 +363,14 @@ main{
   padding: .8rem .4rem;
 }
 .weather-card__stat-value{font-weight: bold;}
+
+/*  exchange */
+.exchange-card__body{
+  display: flex;
+  justify-content: center;
+  gap: .8rem;
+}
+.exchange-card__updated{font-size: .8rem;}
 
 /*  Galery */
 .gallery__title{color: var(--color-primary);}
@@ -417,7 +387,7 @@ main{
   border-radius: .9rem;
   position: relative;
   color: white;
-  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .gallery__item:hover .gallery__overlay{background: rgba(0, 0, 0, 0.3);}
