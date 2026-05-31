@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, flash
+from flask import Flask, render_template, request, jsonify, flash, json
 from integrador.integrador import obtener_info_turistica
 import requests
 from dotenv import load_dotenv
@@ -72,6 +72,12 @@ def buscar_ciudades():
         return jsonify(ciudades)
     except Exception as e:
         return jsonify([])
+    
+@app.route("/debug")
+def debug():
+    with open("mocks/mock.json", encoding="utf-8") as f:
+        resultado = json.load(f)
+    return render_template("index.html", resultado=resultado, ciudad_input="Veracruz", error=None)
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)

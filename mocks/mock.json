@@ -1,0 +1,83 @@
+{
+    "ciudad": "Veracruz",
+    "clima": {
+        "ciudad": "Veracruz",
+        "descripcion": "cielo claro",
+        "error": null,
+        "humedad": 69,
+        "icono": "01d",
+        "pais": "MX",
+        "sensacion": 35,
+        "temperatura": 30
+    },
+    "errores": {},
+    "exito": true,
+    "finanzas": {
+        "compra": 17.3435,
+        "error": null,
+        "moneda": "USD",
+        "nombre": "Dólar"
+    },
+    "imagenes": [
+        {
+            "autor": {
+                "nombre": "Tomas Martinez",
+                "perfil": "https://unsplash.com/@tomasmartinez"
+            },
+            "descripcion": "Lighthouse \"Venustiano Carranza\" in Veracruz, Mexico. ",
+            "id": "8BI8kq5Wn0s",
+            "url_regular": "https://images.unsplash.com/photo-1648322987627-fc3f0bd99926?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwxfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1648322987627-fc3f0bd99926?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwxfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        },
+        {
+            "autor": {
+                "nombre": "Raul Martin Hernandez de la cruz",
+                "perfil": "https://unsplash.com/@flameboyr"
+            },
+            "descripcion": "a large body of water with a bridge and buildings along it",
+            "id": "Vwxwm4u7S28",
+            "url_regular": "https://images.unsplash.com/photo-1666366501135-f1b09e756269?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwyfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1666366501135-f1b09e756269?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwyfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        },
+        {
+            "autor": {
+                "nombre": "Roberto Carlos Román Don",
+                "perfil": "https://unsplash.com/@srcharls"
+            },
+            "descripcion": "Look, enjoy and share this amazing life. Say hello at instagram.com/srcharls.visuals",
+            "id": "GkHCIOqaCVM",
+            "url_regular": "https://images.unsplash.com/photo-1619565900877-b99a606d0ff7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwzfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1619565900877-b99a606d0ff7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHwzfHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        },
+        {
+            "autor": {
+                "nombre": "Germán  Rodríguez",
+                "perfil": "https://unsplash.com/@axger"
+            },
+            "descripcion": "man riding bicycle",
+            "id": "2-_tGD0iTcI",
+            "url_regular": "https://images.unsplash.com/photo-1576700292963-b4ae101c5b62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw0fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1576700292963-b4ae101c5b62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw0fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        },
+        {
+            "autor": {
+                "nombre": "Tomas Martinez",
+                "perfil": "https://unsplash.com/@tomasmartinez"
+            },
+            "descripcion": "Sitting on the dock of Veracruz port in the Gulf of Mexico, Mexico",
+            "id": "5fd8Lc8k3SI",
+            "url_regular": "https://images.unsplash.com/photo-1673041962060-1ac10009e6cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw1fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1673041962060-1ac10009e6cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw1fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        },
+        {
+            "autor": {
+                "nombre": "Hector Carrera",
+                "perfil": "https://unsplash.com/@hector_carrera"
+            },
+            "descripcion": "man in black jacket and black pants walking on sidewalk during daytime",
+            "id": "T6XwDfK75mQ",
+            "url_regular": "https://images.unsplash.com/photo-1595508148376-90aa1f97caf7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw2fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+            "url_small": "https://images.unsplash.com/photo-1595508148376-90aa1f97caf7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDYyNzV8MHwxfHNlYXJjaHw2fHxWZXJhY3J1enxlbnwwfDB8fHwxNzgwMjM5NDM5fDA&ixlib=rb-4.1.0&q=80&w=400"
+        }
+    ]
+}

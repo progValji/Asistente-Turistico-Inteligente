@@ -92,7 +92,7 @@
     </section>
   </header>
 
-  <main class="main">
+  <main class="{% if resultado %}main-result{% else %}main-empty{% endif %} container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         <div class="flash-container">
@@ -107,51 +107,52 @@
       <h1 class="main__title">Resultados para <span class="main__title-highlight">{{ resultado.clima.ciudad }}</span></h1>
 
       <section class="main__results">
-        {% if not resultado.clima.error %}
-        <article class="weather-card">
-          <h3 class="weather-card__title">🌤️ Clima en {{ resultado.clima.ciudad }}</h3>
-
-          <div class="weather-card__primary">
-            <div class="weather-card__icon">🌤</div>
-            <div class="weather-card__temp-info">
-              <p class="weather-card__temperature">{{ resultado.clima.temperatura }}°C</p>
-              <p class="weather-card__description">{{ resultado.clima.descripcion }}</p>
-            </div>
-          </div>
-
-          <div class="weather-card__stats">
-            <div class="weather-card__stat">
-              <span class="weather-card__stat-icon">💧</span>
-              <div class="weather-card__stat-info">
-                <p class="weather-card__stat-label">Humedad</p>
-                <span class="weather-card__stat-value">{{ resultado.clima.humedad }}%</span>
+        <div class="main-set">
+          {% if not resultado.clima.error %}
+          <article class="weather-card">
+            <h3 class="weather-card__title">🌤️ Clima en {{ resultado.clima.ciudad }}</h3>
+  
+            <div class="weather-card__primary">
+              <div class="weather-card__icon">🌤</div>
+              <div class="weather-card__temp-info">
+                <p class="weather-card__temperature">{{ resultado.clima.temperatura }}°C</p>
+                <p class="weather-card__description">{{ resultado.clima.descripcion }}</p>
               </div>
             </div>
-            <div class="weather-card__stat">
-              <span class="weather-card__stat-icon">🌡</span>
-              <div class="weather-card__stat-info">
-                <p class="weather-card__stat-label">Sensación</p>
-                <span class="weather-card__stat-value">{{ resultado.clima.sensacion }}°C</span>
+  
+            <div class="weather-card__stats">
+              <div class="weather-card__stat">
+                <span class="weather-card__stat-icon">💧</span>
+                <div class="weather-card__stat-info">
+                  <p class="weather-card__stat-label">Humedad</p>
+                  <span class="weather-card__stat-value">{{ resultado.clima.humedad }}%</span>
+                </div>
+              </div>
+              <div class="weather-card__stat">
+                <span class="weather-card__stat-icon">🌡</span>
+                <div class="weather-card__stat-info">
+                  <p class="weather-card__stat-label">Sensación</p>
+                  <span class="weather-card__stat-value">{{ resultado.clima.sensacion }}°C</span>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-        {% endif %}
-
-        {% if not resultado.finanzas.error %}
-        <article class="exchange-card">
-          <h3 class="exchange-card__title">💱 Tipo de Cambio</h3>
-          <div class="exchange-card__body">
-            <div class="exchange-card__icon">💱</div>
-            <div class="exchange-card__info">
-              <p class="exchange-card__rate">${{ resultado.finanzas.compra }}</p>
-              <p class="exchange-card__label">MXN por 1 USD</p>
+          </article>
+          {% endif %}
+  
+          {% if not resultado.finanzas.error %}
+          <article class="exchange-card">
+            <h3 class="exchange-card__title">💱 Tipo de Cambio</h3>
+            <div class="exchange-card__body">
+              <div class="exchange-card__icon">💱</div>
+              <div class="exchange-card__info">
+                <p class="exchange-card__rate">${{ resultado.finanzas.compra }}</p>
+                <p class="exchange-card__label">MXN por 1 USD</p>
+              </div>
             </div>
-          </div>
-          <p class="exchange-card__updated">Última actualización: {{ resultado.finanzas.fecha }}</p>
-        </article>
-        {% endif %}
-
+            <p class="exchange-card__updated">Última actualización: {{ resultado.finanzas.fecha }}</p>
+          </article>
+          {% endif %}
+        </div>
         {% if resultado.imagenes %}
         <article class="gallery">
           <h3 class="gallery__title">📸 Galería de {{ resultado.clima.ciudad }}</h3>
