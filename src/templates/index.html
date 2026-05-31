@@ -44,7 +44,6 @@
   
           <input type="hidden" id="ciudad-lat" name="lat" value="{{ lat }}">
           <input type="hidden" id="ciudad-lon" name="lon" value="{{ lon }}">
-
         </form>
   
         <div class="search__quick-picks">
@@ -78,6 +77,17 @@
             Veracruz
           </button>
         </div>
+
+        <dialog class="modal-sugerencias">
+          <div class="modal-sugerencias__container">
+            <h1 class="modal-sugerencias__title">¡Oh no!</h1>
+            <p class="modal-sugerencias__paragraph">Por favor selecciona una ciudad de nuestra lista de sugerencias.</p>
+            <form method="dialog">
+              <button class="modal-sugerencias__btn">Cerrar</button>
+            </form>
+          </div>
+        </dialog>
+
       </section>
     </section>
   </header>

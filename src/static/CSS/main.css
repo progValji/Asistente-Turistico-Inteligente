@@ -85,6 +85,62 @@ button{
   cursor: pointer;
 }
 
+.modal-sugerencias{
+  border: none;
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  overflow: hidden;
+  
+  margin: auto;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-sugerencias[open] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style{
+  .modal-sugerencias[open] {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.modal-sugerencias::backdrop{
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-sugerencias__container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-sugerencias__btn{
+  width: 100%;
+  border: none;
+  padding: .8rem 0;
+  background-color: #dc3545;
+  color: white;
+  font-weight: bold;
+}
+
+.modal-sugerencias__title{
+  text-align: center;
+  font-size: 2.5rem;
+}
+
 body{
   font-family: "Roboto Condensed", sans-serif;
   min-height: 100vh;
@@ -156,6 +212,7 @@ body{
   list-style: none;
   background-color: var(--color-text-dark);
   position: absolute;
+  z-index: 10;
   top: calc(100% + .3rem);
   left: 0;
   width: 100%;

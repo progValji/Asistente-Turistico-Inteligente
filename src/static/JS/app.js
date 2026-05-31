@@ -63,7 +63,7 @@
 
     if (!lat || !lon) {
       e.preventDefault(); // cancela el envío
-      alert("Por favor selecciona una ciudad de la lista de sugerencias.");
+      document.querySelector('.modal-sugerencias').showModal()
       input.focus();
     }
   });
