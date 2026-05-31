@@ -1,0 +1,54 @@
+/* ========================================
+   CSS VARIABLES - COLORES Y TIPOGRAFÍA
+   ======================================== */
+
+:root {
+  /* Colores Primarios */
+  --color-primary: #123B5D;
+  --color-primary-light: #5DADE2;
+
+  /* Textos */
+  --color-text-dark: #0F3D5E;
+  --color-text-medium: #355C7D;
+  --color-text-light: #F8FAFC;
+
+  /* Fondos */
+  --color-bg-white: #FFFFFF;
+  --color-bg-soft: #F4F8FB;
+  --color-bg-glass: rgba(255,255,255,0.18);
+
+  /* Estados */
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-success-border: #28a745;
+
+  --color-error-bg: #f8d7da;
+  --color-error-text: #721c24;
+  --color-error-border: #dc3545;
+
+  /* Tipografía */
+  --font-family: "Roboto Condensed", sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2.5rem;
+  --font-size-3xl: 3.5rem;
+  --font-size-4xl: 4rem;
+
+  /* Espaciado */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.8rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.2rem;
+  --spacing-2xl: 2rem;
+  --spacing-3xl: 3rem;
+
+  /* Border Radius */
+  --border-radius: 0.9rem;
+  --border-radius-sm: 0.8rem;
+
+  /* Z-index */
+  --z-suggestions: 10;
+  --z-modal: 20;
+}

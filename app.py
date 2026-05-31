@@ -75,6 +75,10 @@ def buscar_ciudades():
     
 @app.route("/debug")
 def debug():
+    # Solo accesible en modo desarrollo
+    if not app.debug:
+        return {"error": "Ruta no disponible en producción"}, 403
+    
     with open("mocks/mock.json", encoding="utf-8") as f:
         resultado = json.load(f)
     return render_template("index.html", resultado=resultado, ciudad_input="Veracruz", error=None)
