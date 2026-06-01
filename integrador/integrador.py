@@ -1,6 +1,6 @@
-from api_clima.clima import get_current_weather, get_weather_description
-from api_finanzas.finanzas import get_stock_price, get_stock_price_description
-from api_imagenes.imagenes import get_unsplash_images, get_image_description
+from Apis.api_clima.clima import get_current_weather, get_weather_description
+from Apis.api_finanzas.finanzas import get_stock_price, get_stock_price_description
+from Apis.api_imagenes.imagenes import get_unsplash_images, get_image_description
 
 def obtener_info_turistica(ciudad: str, lat: float, lon: float) -> dict:
     """

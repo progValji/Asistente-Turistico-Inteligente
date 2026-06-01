@@ -5,10 +5,9 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__, template_folder="src/templates", static_folder="src/static")
-app.secret_key = os.getenv("SECRET_KEY")
-
 load_dotenv()
 
+app.secret_key = os.getenv("SECRET_KEY")
 RAPID_KEY = os.getenv("RAPIDAPI_KEY")
 
 @app.route("/", methods=["GET", "POST"])
